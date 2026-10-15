@@ -1,0 +1,20 @@
+# FREE PREVIEW. For looking around only: data resets on restart and the site sleeps after 15 minutes idle.
+# When you are ready to launch, replace this file's contents with render.paid.yaml.
+services:
+  - type: web
+    name: tecateca
+    runtime: node
+    plan: free
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - { key: NODE_VERSION, value: "22" }
+      - { key: NODE_ENV, value: production }
+      - { key: TRUST_PROXY, value: "1" }
+      - { key: NOINDEX, value: "1" }            # asks Google not to list the site
+      - { key: MPESA_MOCK, value: "1" }
+      - { key: SESSION_SECRET, generateValue: true }
+      - { key: MPESA_CALLBACK_SECRET, generateValue: true }
+      - { key: BASE_URL, sync: false }
+      - { key: ADMIN_EMAIL, sync: false }
+      - { key: ADMIN_PASSWORD, sync: false }
